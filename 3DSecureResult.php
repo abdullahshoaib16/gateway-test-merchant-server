@@ -27,9 +27,11 @@ if (intercept('POST')) {
     $post = array_change_key_case($_POST, CASE_LOWER);
     $paResParam = 'pares';
     if (!array_key_exists($paResParam, $post) || empty($post[$paResParam])) {
+        echo 'Pares not found.';
         error(400, 'Missing required issuer response information');
     }
 
+    echo 'Pares: ' + $post[$paResParam];
     $data = array(
         'apiOperation' => 'PROCESS_ACS_RESULT',
         '3DSecure' => array(
